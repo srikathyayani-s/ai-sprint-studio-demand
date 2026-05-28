@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Sprint Studio — Ship Practical AI Solutions in Days, Not Months</title>
+  <meta name="description" content="AI Sprint Studio helps startups and mid-sized companies rapidly implement focused AI solutions without the cost, delay, or risk of hiring a full-time AI team.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #F4EDE2;
+      --ink: #1A1612;
+      --rule: #1A1612;
+      --muted: #6B5C4E;
+      --accent: #B6471F;
+      --accent-soft: #E5D6C5;
+      --card: #FBF6EC;
+      --tag: #1A1612;
+    }
+    [data-theme="dark"] {
+      --paper: #13110E;
+      --ink: #F2EAD9;
+      --rule: #3A322A;
+      --muted: #9A8C7A;
+      --accent: #E2754A;
+      --accent-soft: #241B14;
+      --card: #1B1815;
+      --tag: #F2EAD9;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; scroll-behavior: smooth; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Manrope', system-ui, sans-serif;
+      font-feature-settings: 'ss01';
+      transition: background .25s, color .25s;
+      text-rendering: optimizeLegibility;
+    }
+
+    .display { font-family: 'Newsreader', Georgia, serif; font-weight: 500; letter-spacing: -0.02em; }
+    .label {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .accent { color: var(--accent); }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap { max-width: 1240px; margin: 0 auto; padding: 0 48px; }
+    @media (max-width: 720px) { .wrap { padding: 0 22px; } }
+
+    /* NAV */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: color-mix(in oklab, var(--paper) 88%, transparent);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; padding: 14px 0;
+    }
+    .nav-logo {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 20px; font-weight: 600; letter-spacing: -0.02em;
+    }
+    .nav-logo em { color: var(--accent); font-style: italic; }
+    .nav-links {
+      display: flex; gap: 22px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .nav-links a { transition: color .12s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-right { display: flex; gap: 10px; align-items: center; }
+    @media (max-width: 900px) { .nav-links { display: none; } }
+
+    .theme-toggle {
+      width: 36px; height: 36px; border-radius: 999px;
+      border: 1px solid var(--rule); background: transparent;
+      cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+      color: var(--ink); transition: background .12s;
+    }
+    .theme-toggle:hover { background: var(--accent-soft); }
+
+    .linkchip {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--ink); padding: 6px 14px;
+      border: 1px solid var(--rule); border-radius: 4px;
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: background .12s, color .12s, border-color .12s;
+      cursor: pointer; background: transparent;
+    }
+    .linkchip:hover { background: var(--ink); color: var(--paper); }
+    .linkchip.primary { background: var(--ink); color: var(--paper); }
+    .linkchip.primary:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .linkchip.large {
+      font-size: 12px; padding: 12px 22px;
+      letter-spacing: 0.08em;
+    }
+
+    /* SECTIONS */
+    .section { padding: 96px 0; }
+    @media (max-width: 720px) { .section { padding: 64px 0; } }
+    .section + .section { border-top: 1px solid var(--rule); }
+
+    /* MARQUEE */
+    .marquee {
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      overflow: hidden;
+      background: var(--ink); color: var(--paper);
+      padding: 14px 0;
+    }
+    .marquee-track {
+      display: inline-flex; gap: 40px;
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 20px; font-style: italic;
+      white-space: nowrap;
+      animation: marquee 35s linear infinite;
+    }
+    .marquee-track span::after {
+      content: '✦'; color: var(--accent); margin-left: 40px;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* HERO */
+    .hero { padding: 80px 0 100px; }
+    .hero-eyebrow { margin-bottom: 20px; }
+    .hero-title {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: clamp(52px, 7vw, 96px);
+      font-weight: 500; letter-spacing: -0.03em;
+      line-height: 1.0; margin-bottom: 12px;
+    }
+    .hero-title em { color: var(--accent); font-style: italic; }
+    .hero-sub {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 400; font-style: italic;
+      color: var(--muted); line-height: 1.3;
+      margin-bottom: 28px;
+      letter-spacing: -0.01em;
+    }
+    .hero-body {
+      font-size: 16px; line-height: 1.7;
+      color: var(--muted); max-width: 620px;
+      margin-bottom: 40px;
+    }
+    .hero-body strong { color: var(--ink); font-weight: 600; }
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 64px; align-items: start;
+    }
+    @media (max-width: 900px) {
+      .hero-layout { grid-template-columns: 1fr; }
+    }
+
+    /* HERO CARD */
+    .hero-card {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 32px;
+    }
+    .hero-card-label { margin-bottom: 16px; }
+    .hero-card-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 14px 0; border-bottom: 1px solid var(--accent-soft);
+    }
+    .hero-card-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .hero-card-icon {
+      width: 20px; height: 20px; flex-shrink: 0;
+      color: var(--accent); margin-top: 2px;
+    }
+    .hero-card-text { font-size: 14px; line-height: 1.5; color: var(--muted); }
+    .hero-card-text strong { color: var(--ink); display: block; font-size: 13px; margin-bottom: 2px; }
+
+    /* PROJECTS GRID */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1px;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 48px;
+    }
+    .project-card {
+      background: var(--card);
+      padding: 28px 32px;
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      transition: background .15s;
+    }
+    .project-card:hover { background: var(--accent-soft); }
+    .project-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; color: var(--accent);
+      letter-spacing: 0.1em; margin-bottom: 10px;
+    }
+    .project-title {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 18px; font-weight: 500; line-height: 1.35;
+    }
+
+    /* WHY GRID */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 32px;
+      margin-top: 48px;
+    }
+    .why-card {
+      border-top: 2px solid var(--accent);
+      padding-top: 24px;
+    }
+    .why-title {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 22px; font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .why-body { font-size: 15px; line-height: 1.65; color: var(--muted); }
+    .why-body ul { padding-left: 18px; margin-top: 8px; }
+    .why-body li { margin-bottom: 4px; }
+
+    /* HOW IT WORKS STEPS */
+    .steps { margin-top: 56px; }
+    .step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 24px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: start;
+    }
+    .step:first-child { border-top: 1px solid var(--rule); }
+    .step-num {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 48px; font-weight: 500;
+      color: var(--accent-soft);
+      line-height: 1; letter-spacing: -0.03em;
+      border: 1px solid var(--rule);
+      width: 56px; height: 56px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 4px;
+      font-size: 22px;
+      color: var(--accent);
+    }
+    .step-title {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 24px; font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .step-body { font-size: 15px; line-height: 1.65; color: var(--muted); }
+
+    /* CTA SECTION */
+    .cta-section {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 96px 0;
+    }
+    [data-theme="dark"] .cta-section { background: var(--card); }
+    .cta-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 20px;
+    }
+    .cta-title {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 500; letter-spacing: -0.02em;
+      line-height: 1.1; margin-bottom: 16px;
+      color: var(--paper);
+    }
+    [data-theme="dark"] .cta-title { color: var(--ink); }
+    .cta-body {
+      font-size: 16px; line-height: 1.7;
+      opacity: 0.7; max-width: 560px;
+      margin-bottom: 40px;
+      color: var(--paper);
+    }
+    [data-theme="dark"] .cta-body { color: var(--ink); }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 16px 28px; border-radius: 4px;
+      border: none; cursor: pointer;
+      transition: background .15s, transform .1s;
+      text-decoration: none;
+    }
+    .cta-btn:hover { background: #C5551F; transform: translateY(-1px); }
+
+    /* SECTION HEADER */
+    .section-eyebrow { margin-bottom: 14px; }
+    .section-title {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 500; letter-spacing: -0.02em;
+      line-height: 1.15; margin-bottom: 16px;
+    }
+    .section-lead {
+      font-size: 16px; line-height: 1.7;
+      color: var(--muted); max-width: 600px;
+    }
+
+    /* CONTINUATION NOTE */
+    .continuation-card {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 32px 40px;
+      margin-top: 64px;
+      display: flex; gap: 24px; align-items: flex-start;
+    }
+    .continuation-icon {
+      color: var(--accent); flex-shrink: 0; margin-top: 2px;
+    }
+    .continuation-title {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 20px; font-weight: 500; margin-bottom: 8px;
+    }
+    .continuation-body { font-size: 14px; line-height: 1.65; color: var(--muted); }
+
+    /* FOOTER */
+    .footer {
+      border-top: 1px solid var(--rule);
+      padding: 32px 0;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    @media (max-width: 720px) { .footer { flex-direction: column; gap: 8px; text-align: center; } }
+
+    /* details/FAQ */
+    details { border-bottom: 1px solid var(--rule); padding: 20px 0; }
+    details > summary {
+      list-style: none; cursor: pointer;
+      display: flex; justify-content: space-between; gap: 16px;
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 22px; font-weight: 500;
+    }
+    details > summary::-webkit-details-marker { display: none; }
+    details > summary::after {
+      content: '+'; color: var(--accent);
+      font-size: 28px; line-height: 0.8; transition: transform .2s; flex-shrink: 0;
+    }
+    details[open] > summary::after { transform: rotate(45deg); }
+    details > *:not(summary) {
+      color: var(--muted); font-size: 15px; line-height: 1.7; padding-top: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a href="#top" class="nav-logo">AI Sprint <em>Studio</em></a>
+      <div class="nav-links">
+        <a href="#what-we-do">What We Do</a>
+        <a href="#projects">Projects</a>
+        <a href="#why-us">Why Us</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#book">Book a Call</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7Z" fill="currentColor"/></svg>
+        </button>
+        <a class="linkchip primary" href="#book">Book a Call ➺</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="hero-layout">
+        <div>
+          <div class="hero-eyebrow label">AI Sprint Studio</div>
+          <h1 class="hero-title">Ship Practical<br><em>AI Solutions</em><br>in Days,<br>Not Months.</h1>
+          <p class="hero-sub">Focused AI Sprints for startups<br>and growing companies.</p>
+          <p class="hero-body">
+            AI Sprint Studio helps startups and mid-sized companies rapidly implement focused AI solutions
+            <strong>without the cost, delay, or risk</strong> of hiring a full-time AI team.<br><br>
+            We deliver tightly scoped <strong>"AI Sprints"</strong> — short, outcome-driven engagements led by experienced
+            senior engineers and AI specialists. Each sprint is designed to solve a specific business problem,
+            automate a workflow, or prototype a high-value AI capability <strong>within 1–2 weeks</strong>.
+          </p>
+          <a class="linkchip primary large" href="#book">Book a Free Discovery Call ➺</a>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-card-label label">What you get</div>
+          <div class="hero-card-item">
+            <svg class="hero-card-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="8"/><path d="M10 6v4l3 3"/></svg>
+            <div class="hero-card-text">
+              <strong>1–2 Week Delivery</strong>
+              From kick-off to working solution, fast.
+            </div>
+          </div>
+          <div class="hero-card-item">
+            <svg class="hero-card-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 7l-7-5-7 5v9a1 1 0 001 1h12a1 1 0 001-1V7z"/><path d="M7 17V10h6v7"/></svg>
+            <div class="hero-card-text">
+              <strong>Senior Engineers & AI Specialists</strong>
+              Experienced team, no ramp-up time.
+            </div>
+          </div>
+          <div class="hero-card-item">
+            <svg class="hero-card-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><path d="M5 7h10M5 10h4M5 13h2"/><rect x="2" y="3" width="16" height="14" rx="2"/></svg>
+            <div class="hero-card-text">
+              <strong>Defined Scope & Outcomes</strong>
+              Clear deliverables, no surprises.
+            </div>
+          </div>
+          <div class="hero-card-item">
+            <svg class="hero-card-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10"/><path d="M15 2v5h5"/></svg>
+            <div class="hero-card-text">
+              <strong>Low Overhead, High Value</strong>
+              Test and validate before big commitments.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Knowledge Assistants</span>
+      <span>Workflow Automation</span>
+      <span>Document Extraction</span>
+      <span>AI Search & Retrieval</span>
+      <span>Meeting Summarization</span>
+      <span>AI Copilots</span>
+      <span>Customer Support AI</span>
+      <span>Rapid Prototypes</span>
+      <span>Knowledge Assistants</span>
+      <span>Workflow Automation</span>
+      <span>Document Extraction</span>
+      <span>AI Search & Retrieval</span>
+      <span>Meeting Summarization</span>
+      <span>AI Copilots</span>
+      <span>Customer Support AI</span>
+      <span>Rapid Prototypes</span>
+    </div>
+  </div>
+
+  <!-- WHAT WE DO -->
+  <section class="section" id="what-we-do">
+    <div class="wrap">
+      <div class="section-eyebrow label">What We Do</div>
+      <h2 class="section-title">Targeted AI Solutions,<br>Delivered at Sprint Speed.</h2>
+      <p class="section-lead">
+        Instead of spending months recruiting talent or committing to large consulting engagements,
+        companies can quickly test, validate, and deploy targeted AI solutions with
+        <strong>low overhead and fast turnaround</strong>.
+      </p>
+    </div>
+  </section>
+
+  <!-- SAMPLE PROJECTS -->
+  <section class="section" id="projects" style="padding-top: 0; border-top: none;">
+    <div class="wrap">
+      <div class="section-eyebrow label">Sample Projects</div>
+      <h2 class="section-title">What an AI Sprint<br>Can Build for You.</h2>
+      <p class="section-lead">Examples of focused AI Sprint projects we can deliver in 1–2 weeks.</p>
+
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-num">01</div>
+          <div class="project-title">Internal Knowledge Assistants</div>
+          <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-top:8px;">AI-powered assistants trained on your company documentation, policies, and internal knowledge base.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-num">02</div>
+          <div class="project-title">Customer Support Summarization</div>
+          <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-top:8px;">AI-powered tools that summarize customer interactions, tickets, and conversations for faster resolution.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-num">03</div>
+          <div class="project-title">Workflow Automation</div>
+          <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-top:8px;">Automate repetitive operational tasks using AI to save time and reduce manual errors across your team.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-num">04</div>
+          <div class="project-title">Document Extraction & Processing</div>
+          <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-top:8px;">Intelligent pipelines that extract, classify, and process structured data from unstructured documents.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-num">05</div>
+          <div class="project-title">AI Search & Retrieval Systems</div>
+          <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-top:8px;">Semantic search tools that help your team find the right information, fast — across any corpus of content.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-num">06</div>
+          <div class="project-title">Sales Call & Meeting Summarization</div>
+          <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-top:8px;">Automatic summaries, action items, and insights extracted from sales calls, meetings, and recordings.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-num">07</div>
+          <div class="project-title">Engineering Knowledge Search</div>
+          <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-top:8px;">AI assistants that help engineering teams quickly search codebases, runbooks, and technical documentation.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-num">08</div>
+          <div class="project-title">AI Copilots for Business Workflows</div>
+          <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-top:8px;">Embedded AI assistants that augment internal business workflows — from finance to HR to operations.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-num">09</div>
+          <div class="project-title">Rapid AI Proof-of-Concept Prototypes</div>
+          <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-top:8px;">Fast prototypes that validate your AI idea in the real world before committing to full-scale development.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-num">10</div>
+          <div class="project-title">AI Readiness & Implementation Assessments</div>
+          <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-top:8px;">A structured review of your data, infrastructure, and workflows to identify the highest-value AI opportunities.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="section" id="why-us">
+    <div class="wrap">
+      <div class="section-eyebrow label">Why Companies Choose Us</div>
+      <h2 class="section-title">AI Adoption Without<br>the Usual Obstacles.</h2>
+
+      <div class="why-grid">
+
+        <div class="why-card">
+          <div class="why-title">Fast Execution</div>
+          <p class="why-body">Move from idea to working prototype in days instead of months. No lengthy procurement cycles, no long onboarding — just focused delivery.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-title">Low-Risk AI Adoption</div>
+          <p class="why-body">Experiment with practical AI use cases before committing to full-scale hiring or large budgets. Validate before you invest.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-title">Senior Technical Expertise</div>
+          <p class="why-body">Work directly with experienced engineers and AI leaders — not junior staff or account managers. The people who scope your sprint are the people who build it.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-title">Clearly Scoped Projects</div>
+          <p class="why-body">Every sprint is focused on a concrete business outcome with defined goals and timelines. No scope creep, no vague deliverables.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-title">Flexible Engagement Model</div>
+          <p class="why-body">Ideal for organizations that:
+            <ul>
+              <li>Want to explore AI capabilities</li>
+              <li>Lack internal AI bandwidth</li>
+              <li>Aren't ready for a full-time AI hire</li>
+              <li>Need rapid implementation help</li>
+            </ul>
+          </p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-title">Optional Path to More</div>
+          <p class="why-body">Companies have the option to continue working with sprint participants after the engagement — or even hire them full-time. There's no obligation, but the door is always open.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="how-it-works">
+    <div class="wrap">
+      <div class="section-eyebrow label">The Process</div>
+      <h2 class="section-title">How an AI Sprint Works.</h2>
+      <p class="section-lead">Four focused steps from initial conversation to working solution in your hands.</p>
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <div class="step-title">Discovery Call</div>
+            <p class="step-body">We identify the business problem, workflow, or opportunity area. A free 15-minute conversation to understand your goals, challenges, and where AI can make the most impact.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <div class="step-title">Sprint Definition</div>
+            <p class="step-body">We scope a focused AI sprint with clear deliverables and timelines. You'll know exactly what we're building, when it's due, and what success looks like — before we start.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <div class="step-title">Rapid Implementation</div>
+            <p class="step-body">Our team builds and delivers the solution collaboratively with your stakeholders. You're involved throughout — not handed a black box at the end.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">4</div>
+          <div>
+            <div class="step-title">Handoff & Next Steps</div>
+            <p class="step-body">You receive a working solution or prototype, recommendations, documentation, and optional follow-on support. Every sprint ends with something tangible in your hands.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / BOOK -->
+  <div class="cta-section" id="book">
+    <div class="wrap">
+      <div class="cta-label">Get Started</div>
+      <h2 class="cta-title">Book a Free<br>Discovery Call.</h2>
+      <p class="cta-body">
+        Interested in exploring an AI Sprint for your company?
+        Schedule a free 15-minute discovery call to discuss your goals, current challenges,
+        and potential AI opportunities.
+      </p>
+      <a class="cta-btn" href="https://calendly.com/srikathyayani-srikanteswara/30min" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="11" rx="1.5"/><path d="M5 1v4M11 1v4M2 7h12"/></svg>
+        Schedule Your Free Call ➺
+      </a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap footer">
+      <span>© 2025 AI Sprint Studio</span>
+      <span>Ship Practical AI Solutions in Days, Not Months.</span>
+      <a class="linkchip" href="https://calendly.com/srikathyayani-srikanteswara/30min" target="_blank" rel="noopener">Book a Call ➺</a>
+    </div>
+  </footer>
+
+  <script>
+    // Theme toggle
+    const root = document.documentElement;
+    const btn = document.getElementById('themeToggle');
+    const SUN = `<svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="3" fill="currentColor"/><g stroke="currentColor"><line x1="8" y1="1" x2="8" y2="3"/><line x1="8" y1="13" x2="8" y2="15"/><line x1="1" y1="8" x2="3" y2="8"/><line x1="13" y1="8" x2="15" y2="8"/><line x1="3" y1="3" x2="4.5" y2="4.5"/><line x1="11.5" y1="11.5" x2="13" y2="13"/><line x1="3" y1="13" x2="4.5" y2="11.5"/><line x1="11.5" y1="4.5" x2="13" y2="3"/></g></svg>`;
+    const MOON = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7Z" fill="currentColor"/></svg>`;
+
+    const saved = localStorage.getItem('theme') || 'light';
+    root.setAttribute('data-theme', saved);
+    btn.innerHTML = saved === 'light' ? MOON : SUN;
+
+    btn.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      btn.innerHTML = next === 'light' ? MOON : SUN;
+    });
+  </script>
+</body>
+</html>
