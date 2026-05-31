@@ -413,6 +413,24 @@
     }
     @media (max-width: 720px) { .footer { flex-direction: column; gap: 8px; text-align: center; } }
 
+    /* SKILL FORWARD CALLOUT */
+    .sf-callout {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 4px;
+      padding: 20px 24px;
+      margin-bottom: 32px;
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .sf-callout-icon { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+    .sf-callout-body { flex: 1; }
+    .sf-callout-title {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 15px; font-weight: 500; margin-bottom: 4px; color: var(--ink);
+    }
+    .sf-callout-text { font-size: 13px; line-height: 1.6; color: var(--muted); margin-bottom: 12px; }
+
     /* details/FAQ */
     details { border-bottom: 1px solid var(--rule); padding: 20px 0; }
     details > summary {
@@ -465,11 +483,24 @@
           <p class="hero-sub" style="font-size: clamp(16px, 2vw, 22px); margin-top: 4px;">Built for funded startups and early stage teams.</p>
           <p class="hero-body">
             AI Sprint Studio helps startups and mid-sized companies rapidly implement focused AI solutions
-            <strong>without the cost, delay, or risk</strong> of hiring a full-time AI team.<br><br>
+            <strong>without the cost, delay, or risk</strong> of hiring a full-time AI team.
             We deliver tightly scoped <strong>"AI Sprints"</strong> — short, outcome-driven engagements led by experienced
             senior engineers and AI specialists. Each sprint is designed to solve a specific business problem,
             automate a workflow, or prototype a high-value AI capability <strong>within 1–2 weeks</strong>.
+            <br><br>
+            This program is offered as part of the <strong>Skill Forward</strong> AI upskilling initiative —
+            connecting companies with trained practitioners building in-demand AI skills through real-world project work.
           </p>
+
+          <div class="sf-callout">
+            <svg class="sf-callout-icon" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 2a8 8 0 100 16A8 8 0 0010 2z"/><path d="M10 6v4l3 2"/></svg>
+            <div class="sf-callout-body">
+              <div class="sf-callout-title">Skill Forward — AI Upskilling Initiative</div>
+              <p class="sf-callout-text">Organized by <strong style="color:var(--ink);">Escape with Velocity</strong> and <strong style="color:var(--ink);">Worksystems Oregon</strong>, and funded by a Federal grant to expand access to in-demand AI skills.</p>
+              <a class="linkchip" href="https://suresh-srinivas.github.io/skill-forward/" target="_blank" rel="noopener">Learn About Skill Forward ➺</a>
+            </div>
+          </div>
+
           <a class="linkchip primary large" href="#book">Book a Free Discovery Call ➺</a>
         </div>
 
