@@ -111,28 +111,68 @@
     @media (max-width: 720px) { .section { padding: 64px 0; } }
     .section + .section { border-top: 1px solid var(--rule); }
 
-    /* MARQUEE */
-    .marquee {
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      overflow: hidden;
-      background: var(--ink); color: var(--paper);
-      padding: 14px 0;
+    /* CONTACT MODAL */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.55); backdrop-filter: blur(4px);
+      align-items: center; justify-content: center;
     }
-    .marquee-track {
-      display: inline-flex; gap: 40px;
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: var(--card); border: 1px solid var(--rule);
+      border-radius: 8px; padding: 40px; width: 90%; max-width: 480px;
+      position: relative; max-height: 90vh; overflow-y: auto;
+    }
+    .modal-close {
+      position: absolute; top: 14px; right: 16px;
+      background: none; border: none; cursor: pointer;
+      color: var(--muted); font-size: 22px; line-height: 1;
+      transition: color .12s;
+    }
+    .modal-close:hover { color: var(--ink); }
+    .modal-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 10px;
+    }
+    .modal-title {
       font-family: 'Newsreader', Georgia, serif;
-      font-size: 20px; font-style: italic;
-      white-space: nowrap;
-      animation: marquee 35s linear infinite;
+      font-size: 28px; font-weight: 500; margin-bottom: 28px;
+      color: var(--ink);
     }
-    .marquee-track span::after {
-      content: '✦'; color: var(--accent); margin-left: 40px;
+    .modal-field { margin-bottom: 18px; }
+    .modal-label {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 6px;
     }
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
+    .modal-input, .modal-textarea {
+      width: 100%; padding: 10px 14px;
+      border: 1px solid var(--rule); border-radius: 4px;
+      background: var(--paper); color: var(--ink);
+      font-family: 'Manrope', sans-serif; font-size: 14px;
+      outline: none; transition: border-color .15s;
+      box-sizing: border-box;
     }
+    .modal-input:focus, .modal-textarea:focus { border-color: var(--accent); }
+    .modal-textarea { resize: vertical; min-height: 120px; }
+    .modal-submit {
+      width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--accent); color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 14px 22px; border-radius: 4px; border: none; cursor: pointer;
+      transition: background .15s; margin-top: 8px;
+    }
+    .modal-submit:hover { background: #C5551F; }
+    .modal-submit:disabled { opacity: 0.6; cursor: default; }
+    .modal-status {
+      display: none; margin-top: 16px; text-align: center;
+      font-size: 14px; line-height: 1.5;
+    }
+    .modal-status.success { color: #2a7a2a; }
+    .modal-status.error { color: var(--accent); }
 
     /* HERO */
     .hero { padding: 80px 0 100px; }
@@ -213,6 +253,29 @@
     .project-title {
       font-family: 'Newsreader', Georgia, serif;
       font-size: 18px; font-weight: 500; line-height: 1.35;
+    }
+
+    /* SKILLS GRID */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 12px;
+      margin-top: 48px;
+    }
+    .skill-tag {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 4px;
+      padding: 14px 18px;
+      font-size: 14px; font-weight: 500;
+      transition: background .15s, transform .1s;
+    }
+    .skill-tag:hover { background: var(--accent-soft); transform: translateX(2px); }
+    .skill-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0;
     }
 
     /* WHY GRID */
@@ -317,6 +380,8 @@
       font-size: 16px; line-height: 1.7;
       color: var(--muted); max-width: 600px;
     }
+    #what-we-do .section-title,
+    #what-we-do .section-lead { max-width: none; }
 
     /* CONTINUATION NOTE */
     .continuation-card {
@@ -396,7 +461,8 @@
         <div>
           <div class="hero-eyebrow label">AI Sprint Studio</div>
           <h1 class="hero-title">Ship Practical<br><em>AI Solutions</em><br>in Days,<br>Not Months.</h1>
-          <p class="hero-sub">Focused AI Sprints for startups<br>and growing companies.</p>
+          <p class="hero-sub">Focused AI Sprints for startups and growing companies.</p>
+          <p class="hero-sub" style="font-size: clamp(16px, 2vw, 22px); margin-top: 4px;">Built for funded startups and early stage teams.</p>
           <p class="hero-body">
             AI Sprint Studio helps startups and mid-sized companies rapidly implement focused AI solutions
             <strong>without the cost, delay, or risk</strong> of hiring a full-time AI team.<br><br>
@@ -442,33 +508,11 @@
     </div>
   </section>
 
-  <!-- MARQUEE -->
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span>Knowledge Assistants</span>
-      <span>Workflow Automation</span>
-      <span>Document Extraction</span>
-      <span>AI Search & Retrieval</span>
-      <span>Meeting Summarization</span>
-      <span>AI Copilots</span>
-      <span>Customer Support AI</span>
-      <span>Rapid Prototypes</span>
-      <span>Knowledge Assistants</span>
-      <span>Workflow Automation</span>
-      <span>Document Extraction</span>
-      <span>AI Search & Retrieval</span>
-      <span>Meeting Summarization</span>
-      <span>AI Copilots</span>
-      <span>Customer Support AI</span>
-      <span>Rapid Prototypes</span>
-    </div>
-  </div>
-
   <!-- WHAT WE DO -->
   <section class="section" id="what-we-do">
     <div class="wrap">
       <div class="section-eyebrow label">What We Do</div>
-      <h2 class="section-title">Targeted AI Solutions,<br>Delivered at Sprint Speed.</h2>
+      <h2 class="section-title">Targeted AI Solutions, Delivered at Sprint Speed.</h2>
       <p class="section-lead">
         Instead of spending months recruiting talent or committing to large consulting engagements,
         companies can quickly test, validate, and deploy targeted AI solutions with
@@ -481,7 +525,7 @@
   <section class="section" id="projects" style="padding-top: 0; border-top: none;">
     <div class="wrap">
       <div class="section-eyebrow label">Sample Projects</div>
-      <h2 class="section-title">What an AI Sprint<br>Can Build for You.</h2>
+      <h2 class="section-title">What an AI Sprint Can Build for You.</h2>
       <p class="section-lead">Examples of focused AI Sprint projects we can deliver in 1–2 weeks.</p>
 
       <div class="projects-grid">
@@ -550,6 +594,33 @@
     </div>
   </section>
 
+  <!-- TEAM SKILLS -->
+  <section class="section" id="team-skills">
+    <div class="wrap">
+      <div class="section-eyebrow label">Our Team</div>
+      <h2 class="section-title">Skills & Expertise Behind Every Sprint.</h2>
+      <p class="section-lead">Our bench spans the full technology and business stack — so every sprint is staffed with the exact expertise your project needs.</p>
+
+      <div class="skills-grid">
+        <div class="skill-tag"><span class="skill-dot"></span>Software Development</div>
+        <div class="skill-tag"><span class="skill-dot"></span>Web & Mobile Development</div>
+        <div class="skill-tag"><span class="skill-dot"></span>Databases</div>
+        <div class="skill-tag"><span class="skill-dot"></span>DevOps & Cloud Infrastructure</div>
+        <div class="skill-tag"><span class="skill-dot"></span>AI & Machine Learning</div>
+        <div class="skill-tag"><span class="skill-dot"></span>Data Science & Analytics</div>
+        <div class="skill-tag"><span class="skill-dot"></span>Networking & Systems Engineering</div>
+        <div class="skill-tag"><span class="skill-dot"></span>Wireless, Edge & Security</div>
+        <div class="skill-tag"><span class="skill-dot"></span>SAP & ERP Systems</div>
+        <div class="skill-tag"><span class="skill-dot"></span>Quality, Compliance & Regulatory</div>
+        <div class="skill-tag"><span class="skill-dot"></span>Project & Program Management</div>
+        <div class="skill-tag"><span class="skill-dot"></span>Product Management & Strategy</div>
+        <div class="skill-tag"><span class="skill-dot"></span>Leadership & Operations</div>
+        <div class="skill-tag"><span class="skill-dot"></span>Marketing & Communications</div>
+        <div class="skill-tag"><span class="skill-dot"></span>Business Coaching & Customer Success</div>
+      </div>
+    </div>
+  </section>
+
   <!-- WHY US -->
   <section class="section" id="why-us">
     <div class="wrap">
@@ -600,7 +671,7 @@
   </section>
 
   <!-- HOW IT WORKS -->
-  <section class="section" id="how-it-works">
+  <section class="section" id="how-it-works" style="padding-bottom: 32px;">
     <div class="wrap">
       <div class="section-eyebrow label">The Process</div>
       <h2 class="section-title">How an AI Sprint Works.</h2>
@@ -619,8 +690,8 @@
         <div class="step">
           <div class="step-num">2</div>
           <div>
-            <div class="step-title">Sprint Definition</div>
-            <p class="step-body">We scope a focused AI sprint with clear deliverables and timelines. You'll know exactly what we're building, when it's due, and what success looks like — before we start.</p>
+            <div class="step-title">Sprint Definition and Pricing</div>
+            <p class="step-body">We scope a focused AI sprint with clear deliverables and timelines. You'll know exactly what we're building, when it's due, and what success looks like — before we start. 40-hour sprint starting at $800, 80-hour sprint starting at $1,500.</p>
           </div>
         </div>
 
@@ -644,6 +715,25 @@
     </div>
   </section>
 
+  <!-- SWEEPSTAKES -->
+  <section class="section" id="sweepstakes" style="padding-top: 32px; border-top: none;">
+    <div class="wrap">
+      <div style="background: var(--ink); border-radius: 8px; padding: 64px 56px; display: flex; gap: 56px; align-items: center; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 280px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px;">Sweepstakes</div>
+          <h2 style="font-family: 'Newsreader', Georgia, serif; font-size: clamp(28px, 3.5vw, 48px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 16px; color: var(--paper);">Win 1 Free 40-Hour <em style="color: var(--accent); font-style: italic;">AI Sprint.</em></h2>
+          <p style="font-size: 15px; line-height: 1.7; color: var(--paper); opacity: 0.65; max-width: 460px; margin-bottom: 32px;">Enter your project details for a chance to win a free 40-hour AI Sprint — a $800 value. Tell us what you're building and we'll select the most compelling idea.</p>
+          <button id="openSweepstakesModal" class="cta-btn">Enter Sweepstakes ➺</button>
+        </div>
+        <div style="flex-shrink: 0; text-align: center; border-left: 1px solid rgba(255,255,255,0.12); padding-left: 56px;">
+          <div style="font-family: 'Newsreader', Georgia, serif; font-size: 72px; font-weight: 500; line-height: 1; color: var(--accent);">$800</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--paper); opacity: 0.5; margin-top: 10px;">Prize Value</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--paper); opacity: 0.5; margin-top: 4px;">40-Hour Sprint</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA / BOOK -->
   <div class="cta-section" id="book">
     <div class="wrap">
@@ -658,6 +748,62 @@
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="11" rx="1.5"/><path d="M5 1v4M11 1v4M2 7h12"/></svg>
         Schedule Your Free Call ➺
       </a>
+
+      <p style="margin-top: 32px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--paper); opacity: 0.7; margin-bottom: 16px;">Questions?</p>
+      <button id="openContactModal" class="cta-btn">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12v9a1 1 0 01-1 1H3a1 1 0 01-1-1V4z"/><path d="M2 4l6 5 6-5"/></svg>
+        Contact Us ➺
+      </button>
+    </div>
+  </div>
+
+  <!-- CONTACT MODAL -->
+  <div id="contactModal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Contact us">
+    <div class="modal-box">
+      <button class="modal-close" id="closeContactModal" aria-label="Close">✕</button>
+      <div class="modal-eyebrow">Get in Touch</div>
+      <div class="modal-title">Send Us a Message</div>
+      <form id="contactForm">
+        <div class="modal-field">
+          <label class="modal-label" for="cf-email">Your Email</label>
+          <input class="modal-input" id="cf-email" type="email" name="email" required placeholder="you@example.com">
+        </div>
+        <div class="modal-field">
+          <label class="modal-label" for="cf-subject">Subject</label>
+          <input class="modal-input" id="cf-subject" type="text" name="subject" required placeholder="How can we help?">
+        </div>
+        <div class="modal-field">
+          <label class="modal-label" for="cf-message">Message</label>
+          <textarea class="modal-textarea" id="cf-message" name="message" required placeholder="Tell us about your project or question…"></textarea>
+        </div>
+        <button class="modal-submit" type="submit">Send Message ➺</button>
+        <div class="modal-status" id="formStatus"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- SWEEPSTAKES MODAL -->
+  <div id="sweepstakesModal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Sweepstakes entry">
+    <div class="modal-box">
+      <button class="modal-close" id="closeSweepstakesModal" aria-label="Close">✕</button>
+      <div class="modal-eyebrow">Win a Free Sprint</div>
+      <div class="modal-title">Sweepstakes Entry</div>
+      <form id="sweepstakesForm">
+        <div class="modal-field">
+          <label class="modal-label" for="sw-email">Your Email</label>
+          <input class="modal-input" id="sw-email" type="email" name="email" required placeholder="you@company.com">
+        </div>
+        <div class="modal-field">
+          <label class="modal-label" for="sw-company">Company Name</label>
+          <input class="modal-input" id="sw-company" type="text" name="company" required placeholder="Your company or startup name">
+        </div>
+        <div class="modal-field">
+          <label class="modal-label" for="sw-description">AI Sprint Project Description</label>
+          <textarea class="modal-textarea" id="sw-description" name="description" required placeholder="Describe the business problem you'd like to solve with an AI Sprint…"></textarea>
+        </div>
+        <button class="modal-submit" type="submit">Enter Sweepstakes ➺</button>
+        <div class="modal-status" id="sweepstakesStatus"></div>
+      </form>
     </div>
   </div>
 
@@ -686,6 +832,112 @@
       root.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
       btn.innerHTML = next === 'light' ? MOON : SUN;
+    });
+
+    // Contact modal
+    const modal = document.getElementById('contactModal');
+    const openBtn = document.getElementById('openContactModal');
+    const closeBtn = document.getElementById('closeContactModal');
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+
+    function openModal() { modal.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeModal() { modal.classList.remove('open'); document.body.style.overflow = ''; }
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeSweepstakes(); } });
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const submitBtn = form.querySelector('.modal-submit');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+      status.className = 'modal-status';
+      status.style.display = 'none';
+
+      // Replace YOUR_FORM_ID below with the ID from your Formspree dashboard
+      const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+
+      try {
+        const res = await fetch(FORMSPREE_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: form.email.value,
+            subject: form.subject.value,
+            message: form.message.value
+          })
+        });
+        if (res.ok) {
+          form.reset();
+          status.textContent = 'Message sent! We\'ll be in touch soon.';
+          status.className = 'modal-status success';
+        } else {
+          throw new Error('Server error');
+        }
+      } catch {
+        status.textContent = 'Something went wrong. Please try again.';
+        status.className = 'modal-status error';
+      }
+
+      status.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message ➺';
+    });
+
+    // Sweepstakes modal
+    const swModal = document.getElementById('sweepstakesModal');
+    const swOpenBtn = document.getElementById('openSweepstakesModal');
+    const swCloseBtn = document.getElementById('closeSweepstakesModal');
+    const swForm = document.getElementById('sweepstakesForm');
+    const swStatus = document.getElementById('sweepstakesStatus');
+
+    function openSweepstakes() { swModal.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeSweepstakes() { swModal.classList.remove('open'); document.body.style.overflow = ''; }
+
+    swOpenBtn.addEventListener('click', openSweepstakes);
+    swCloseBtn.addEventListener('click', closeSweepstakes);
+    swModal.addEventListener('click', e => { if (e.target === swModal) closeSweepstakes(); });
+
+    swForm.addEventListener('submit', async e => {
+      e.preventDefault();
+      const submitBtn = swForm.querySelector('.modal-submit');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting…';
+      swStatus.className = 'modal-status';
+      swStatus.style.display = 'none';
+
+      // Replace YOUR_SWEEPSTAKES_FORM_ID with the ID from your Formspree dashboard
+      const SW_ENDPOINT = 'https://formspree.io/f/YOUR_SWEEPSTAKES_FORM_ID';
+
+      try {
+        const res = await fetch(SW_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: swForm.email.value,
+            company: swForm.company.value,
+            description: swForm.description.value,
+            subject: 'Sweepstakes Entry — ' + swForm.company.value
+          })
+        });
+        if (res.ok) {
+          swForm.reset();
+          swStatus.textContent = "You're entered! We'll announce the winner by email.";
+          swStatus.className = 'modal-status success';
+        } else {
+          throw new Error('Server error');
+        }
+      } catch {
+        swStatus.textContent = 'Something went wrong. Please try again.';
+        swStatus.className = 'modal-status error';
+      }
+
+      swStatus.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Enter Sweepstakes ➺';
     });
   </script>
 </body>
