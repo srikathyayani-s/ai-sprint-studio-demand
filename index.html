@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AI Sprint Studio — Ship Practical AI Solutions in Days, Not Months</title>
-  <meta name="description" content="AI Sprint Studio helps startups and mid-sized companies rapidly implement focused AI solutions without the cost, delay, or risk of hiring a full-time AI team.">
+  <title>AI Sprint Studio — Ship a Working AI Feature in Two Weeks</title>
+  <meta name="description" content="AI Sprint Studio helps funded startups scope and ship one focused AI capability in 1-2 weeks without hiring, retainers, or long roadmaps.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -112,69 +112,6 @@
     @media (max-width: 720px) { .section { padding: 64px 0; } }
     .section + .section { border-top: 1px solid var(--rule); }
 
-    /* CONTACT MODAL */
-    .modal-overlay {
-      display: none; position: fixed; inset: 0; z-index: 200;
-      background: rgba(0,0,0,0.55); backdrop-filter: blur(4px);
-      align-items: center; justify-content: center;
-    }
-    .modal-overlay.open { display: flex; }
-    .modal-box {
-      background: var(--card); border: 1px solid var(--rule);
-      border-radius: 8px; padding: 40px; width: 90%; max-width: 480px;
-      position: relative; max-height: 90vh; overflow-y: auto;
-    }
-    .modal-close {
-      position: absolute; top: 14px; right: 16px;
-      background: none; border: none; cursor: pointer;
-      color: var(--muted); font-size: 22px; line-height: 1;
-      transition: color .12s;
-    }
-    .modal-close:hover { color: var(--ink); }
-    .modal-eyebrow {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 10px;
-    }
-    .modal-title {
-      font-family: 'Newsreader', Georgia, serif;
-      font-size: 28px; font-weight: 500; margin-bottom: 28px;
-      color: var(--ink);
-    }
-    .modal-field { margin-bottom: 18px; }
-    .modal-label {
-      display: block;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 6px;
-    }
-    .modal-input, .modal-textarea {
-      width: 100%; padding: 10px 14px;
-      border: 1px solid var(--rule); border-radius: 4px;
-      background: var(--paper); color: var(--ink);
-      font-family: 'Manrope', sans-serif; font-size: 14px;
-      outline: none; transition: border-color .15s;
-      box-sizing: border-box;
-    }
-    .modal-input:focus, .modal-textarea:focus { border-color: var(--accent); }
-    .modal-textarea { resize: vertical; min-height: 120px; }
-    .modal-submit {
-      width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
-      background: var(--accent); color: #fff;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 14px 22px; border-radius: 4px; border: none; cursor: pointer;
-      transition: background .15s; margin-top: 8px;
-    }
-    .modal-submit:hover { background: #C5551F; }
-    .modal-submit:disabled { opacity: 0.6; cursor: default; }
-    .modal-status {
-      display: none; margin-top: 16px; text-align: center;
-      font-size: 14px; line-height: 1.5;
-    }
-    .modal-status.success { color: #2a7a2a; }
-    .modal-status.error { color: var(--accent); }
-
     /* HERO */
     .hero { padding: 80px 0 100px; }
     .hero-eyebrow { margin-bottom: 20px; }
@@ -254,29 +191,6 @@
     .project-title {
       font-family: 'Newsreader', Georgia, serif;
       font-size: 18px; font-weight: 500; line-height: 1.35;
-    }
-
-    /* SKILLS GRID */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-      gap: 12px;
-      margin-top: 48px;
-    }
-    .skill-tag {
-      display: flex; align-items: center; gap: 12px;
-      background: var(--card);
-      border: 1px solid var(--rule);
-      border-left: 3px solid var(--accent);
-      border-radius: 4px;
-      padding: 14px 18px;
-      font-size: 14px; font-weight: 500;
-      transition: background .15s, transform .1s;
-    }
-    .skill-tag:hover { background: var(--accent-soft); transform: translateX(2px); }
-    .skill-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--accent); flex-shrink: 0;
     }
 
     /* WHY GRID */
@@ -396,9 +310,35 @@
     .continuation-icon {
       color: var(--accent); flex-shrink: 0; margin-top: 2px;
     }
+    .proof-avatar {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--rule);
+      flex-shrink: 0;
+    }
+    .proof-media-group {
+      display: flex;
+      gap: 10px;
+      flex-shrink: 0;
+      align-items: center;
+    }
+    .proof-thumb {
+      width: 92px; height: 64px;
+      border-radius: 6px;
+      object-fit: cover;
+      border: 1px solid var(--rule);
+      background: var(--paper);
+    }
     .continuation-title {
       font-family: 'Newsreader', Georgia, serif;
       font-size: 20px; font-weight: 500; margin-bottom: 8px;
+    }
+    .continuation-title a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
     }
     .continuation-body { font-size: 14px; line-height: 1.65; color: var(--muted); }
 
@@ -414,41 +354,6 @@
     }
     @media (max-width: 720px) { .footer { flex-direction: column; gap: 8px; text-align: center; } }
 
-    /* SKILL FORWARD CALLOUT */
-    .sf-callout {
-      background: var(--card);
-      border: 1px solid var(--rule);
-      border-left: 3px solid var(--accent);
-      border-radius: 4px;
-      padding: 20px 24px;
-      margin-bottom: 32px;
-      display: flex; align-items: flex-start; gap: 14px;
-    }
-    .sf-callout-icon { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
-    .sf-callout-body { flex: 1; }
-    .sf-callout-title {
-      font-family: 'Newsreader', Georgia, serif;
-      font-size: 15px; font-weight: 500; margin-bottom: 4px; color: var(--ink);
-    }
-    .sf-callout-text { font-size: 13px; line-height: 1.6; color: var(--muted); margin-bottom: 12px; }
-
-    /* details/FAQ */
-    details { border-bottom: 1px solid var(--rule); padding: 20px 0; }
-    details > summary {
-      list-style: none; cursor: pointer;
-      display: flex; justify-content: space-between; gap: 16px;
-      font-family: 'Newsreader', Georgia, serif;
-      font-size: 22px; font-weight: 500;
-    }
-    details > summary::-webkit-details-marker { display: none; }
-    details > summary::after {
-      content: '+'; color: var(--accent);
-      font-size: 28px; line-height: 0.8; transition: transform .2s; flex-shrink: 0;
-    }
-    details[open] > summary::after { transform: rotate(45deg); }
-    details > *:not(summary) {
-      color: var(--muted); font-size: 15px; line-height: 1.7; padding-top: 12px;
-    }
   </style>
 </head>
 <body>
@@ -459,7 +364,8 @@
       <a href="#top" class="nav-logo">AI Sprint <em>Studio</em></a>
       <div class="nav-links">
         <a href="#what-we-do">What We Do</a>
-        <a href="#projects">Projects</a>
+        <a href="#projects">Sprint Types</a>
+        <a href="#deliverables">Deliverables</a>
         <a href="#why-us">Why Us</a>
         <a href="#how-it-works">How It Works</a>
         <a href="#book">Book a Call</a>
@@ -478,61 +384,46 @@
     <div class="wrap">
       <div class="hero-layout">
         <div>
-          <div class="hero-eyebrow label">AI Sprint Studio</div>
-          <h1 class="hero-title">Ship Practical<br><em>AI Solutions</em><br>in Days,<br>Not Months.</h1>
-          <p class="hero-sub">Focused AI Sprints for startups and growing companies.</p>
-          <p class="hero-sub" style="font-size: clamp(16px, 2vw, 22px); margin-top: 4px;">Built for funded startups and early stage teams.</p>
+          <div class="hero-eyebrow label">AI Sprints for funded startups</div>
+          <h1 class="hero-title">Ship a Working<br><em>AI Feature</em><br>in Two Weeks.</h1>
+          <p class="hero-sub">For the cost of a contractor week.</p>
           <p class="hero-body">
-            AI Sprint Studio helps startups and mid-sized companies rapidly implement focused AI solutions
-            <strong>without the cost, delay, or risk</strong> of hiring a full-time AI team.
-            We deliver tightly scoped <strong>"AI Sprints"</strong> — short, outcome-driven engagements led by experienced
-            senior engineers and AI specialists. Each sprint is designed to solve a specific business problem,
-            automate a workflow, or prototype a high-value AI capability <strong>within 1–2 weeks</strong>.
-            <br><br>
-            This program is offered as part of the <strong>Skill Forward</strong> AI upskilling initiative —
-            connecting companies with trained practitioners building in-demand AI skills through real-world project work.
+            Senior-led teams scope and build one focused AI capability for your product or internal workflow,
+            then hand it off working. <strong>No hiring cycle, no consulting retainer, no six-month roadmap.</strong>
           </p>
 
-          <div class="sf-callout">
-            <svg class="sf-callout-icon" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 2a8 8 0 100 16A8 8 0 0010 2z"/><path d="M10 6v4l3 2"/></svg>
-            <div class="sf-callout-body">
-              <div class="sf-callout-title">Skill Forward — AI Upskilling Initiative</div>
-              <p class="sf-callout-text">Organized by <strong style="color:var(--ink);">Escape with Velocity</strong> and <strong style="color:var(--ink);">Worksystems Oregon</strong>, and funded by a Federal grant to expand access to in-demand AI skills.</p>
-              <a class="linkchip" href="https://suresh-srinivas.github.io/skill-forward/" target="_blank" rel="noopener">Learn About Skill Forward ➺</a>
-            </div>
-          </div>
-
           <a class="linkchip primary large" href="#book">Book a Free Discovery Call ➺</a>
+          <a class="linkchip large" href="#deliverables">See What a Sprint Produces ↓</a>
         </div>
 
         <div class="hero-card">
-          <div class="hero-card-label label">What you get</div>
+          <div class="hero-card-label label">What you get in 1-2 weeks</div>
           <div class="hero-card-item">
             <svg class="hero-card-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="8"/><path d="M10 6v4l3 3"/></svg>
             <div class="hero-card-text">
-              <strong>1–2 Week Delivery</strong>
-              From kick-off to working solution, fast.
+              <strong>Focused Scope</strong>
+              One specific capability, success criteria, and handoff plan.
             </div>
           </div>
           <div class="hero-card-item">
             <svg class="hero-card-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 7l-7-5-7 5v9a1 1 0 001 1h12a1 1 0 001-1V7z"/><path d="M7 17V10h6v7"/></svg>
             <div class="hero-card-text">
-              <strong>Senior Engineers & AI Specialists</strong>
-              Experienced team, no ramp-up time.
+              <strong>Senior-Led Build</strong>
+              Experienced technical leadership with the right implementation support.
             </div>
           </div>
           <div class="hero-card-item">
             <svg class="hero-card-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><path d="M5 7h10M5 10h4M5 13h2"/><rect x="2" y="3" width="16" height="14" rx="2"/></svg>
             <div class="hero-card-text">
-              <strong>Defined Scope & Outcomes</strong>
-              Clear deliverables, no surprises.
+              <strong>Working Prototype</strong>
+              A real workflow or product feature, not a strategy deck.
             </div>
           </div>
           <div class="hero-card-item">
             <svg class="hero-card-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10"/><path d="M15 2v5h5"/></svg>
             <div class="hero-card-text">
-              <strong>Low Overhead, High Value</strong>
-              Test and validate before big commitments.
+              <strong>Founder-Ready Decision</strong>
+              Know whether to ship, fund, hire, or stop.
             </div>
           </div>
         </div>
@@ -544,111 +435,116 @@
   <section class="section" id="what-we-do">
     <div class="wrap">
       <div class="section-eyebrow label">What We Do</div>
-      <h2 class="section-title">Targeted AI Solutions, Delivered at Sprint Speed.</h2>
+      <h2 class="section-title">Scope and ship one high-value AI capability.</h2>
       <p class="section-lead">
-        Instead of spending months recruiting talent or committing to large consulting engagements,
-        companies can quickly test, validate, and deploy targeted AI solutions with
-        <strong>low overhead and fast turnaround</strong>.
+        We help founder-led teams test a real AI opportunity before they commit headcount or roadmap time.
+        Each sprint is narrow by design: one problem, one build, one concrete outcome.
       </p>
+    </div>
+  </section>
+
+  <!-- FOUNDER PAIN POINTS -->
+  <section class="section" id="pain-points" style="padding-top: 0; border-top: none;">
+    <div class="wrap">
+      <div class="section-eyebrow label">Founder Reality</div>
+      <h2 class="section-title">The AI backlog keeps growing. Your team does not.</h2>
+      <p class="section-lead">Most founders can see where AI could help, but the first build is hard to justify when product, customers, and fundraising already need attention.</p>
+
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-title">You see the opportunity, but not the build path.</div>
+          <p class="why-body">AI could improve search, support, onboarding, content, or internal ops, but it is hard to know what is worth engineering time.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-title">Your core team is already committed.</div>
+          <p class="why-body">Pulling product engineers into AI experiments slows roadmap work, and hiring AI talent is expensive before the use case is proven.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-title">You need evidence before headcount.</div>
+          <p class="why-body">A working sprint gives you something concrete to test with users, investors, customers, or your team before you commit budget.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- SAMPLE PROJECTS -->
   <section class="section" id="projects" style="padding-top: 0; border-top: none;">
     <div class="wrap">
-      <div class="section-eyebrow label">Sample Projects</div>
-      <h2 class="section-title">What an AI Sprint Can Build for You.</h2>
-      <p class="section-lead">Examples of focused AI Sprint projects we can deliver in 1–2 weeks.</p>
+      <div class="section-eyebrow label">Flagship Sprint Types</div>
+      <h2 class="section-title">Three wedges where a sprint can prove value fast.</h2>
+      <p class="section-lead">Start with the business decision you need to de-risk, then build only enough software to answer it.</p>
 
       <div class="projects-grid">
 
         <div class="project-card">
           <div class="project-num">01</div>
-          <div class="project-title">Internal Knowledge Assistants</div>
-          <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-top:8px;">AI-powered assistants trained on your company documentation, policies, and internal knowledge base.</p>
+          <div class="project-title">Website Rebranding</div>
+          <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-top:8px;">A premium website is necessary, but founders have customers, products, and fundraising to worry about. We build the site for you, with experience from the Skill Forward site and a website for an Oregon accelerator startup.</p>
         </div>
 
         <div class="project-card">
           <div class="project-num">02</div>
-          <div class="project-title">Customer Support Summarization</div>
-          <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-top:8px;">AI-powered tools that summarize customer interactions, tickets, and conversations for faster resolution.</p>
+          <div class="project-title">Media Extraction Pipelines</div>
+          <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-top:8px;">Turn PDFs, audio, and video into structured data for customer-facing sites, internal workflows, search, summaries, or downstream product features.</p>
         </div>
 
         <div class="project-card">
           <div class="project-num">03</div>
-          <div class="project-title">Workflow Automation</div>
-          <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-top:8px;">Automate repetitive operational tasks using AI to save time and reduce manual errors across your team.</p>
-        </div>
-
-        <div class="project-card">
-          <div class="project-num">04</div>
-          <div class="project-title">Document Extraction & Processing</div>
-          <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-top:8px;">Intelligent pipelines that extract, classify, and process structured data from unstructured documents.</p>
-        </div>
-
-        <div class="project-card">
-          <div class="project-num">05</div>
-          <div class="project-title">AI Search & Retrieval Systems</div>
-          <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-top:8px;">Semantic search tools that help your team find the right information, fast — across any corpus of content.</p>
-        </div>
-
-        <div class="project-card">
-          <div class="project-num">06</div>
-          <div class="project-title">Sales Call & Meeting Summarization</div>
-          <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-top:8px;">Automatic summaries, action items, and insights extracted from sales calls, meetings, and recordings.</p>
-        </div>
-
-        <div class="project-card">
-          <div class="project-num">07</div>
-          <div class="project-title">Engineering Knowledge Search</div>
-          <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-top:8px;">AI assistants that help engineering teams quickly search codebases, runbooks, and technical documentation.</p>
-        </div>
-
-        <div class="project-card">
-          <div class="project-num">08</div>
-          <div class="project-title">AI Copilots for Business Workflows</div>
-          <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-top:8px;">Embedded AI assistants that augment internal business workflows — from finance to HR to operations.</p>
-        </div>
-
-        <div class="project-card">
-          <div class="project-num">09</div>
-          <div class="project-title">Rapid AI Proof-of-Concept Prototypes</div>
-          <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-top:8px;">Fast prototypes that validate your AI idea in the real world before committing to full-scale development.</p>
-        </div>
-
-        <div class="project-card">
-          <div class="project-num">10</div>
-          <div class="project-title">AI Readiness & Implementation Assessments</div>
-          <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-top:8px;">A structured review of your data, infrastructure, and workflows to identify the highest-value AI opportunities.</p>
+          <div class="project-title">AI Feature Prototypes</div>
+          <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-top:8px;">We build and share an AI capability inside your product so you can pressure test it with real users before deciding whether to build it out.</p>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- TEAM SKILLS -->
-  <section class="section" id="team-skills">
+  <!-- DELIVERABLES -->
+  <section class="section" id="deliverables">
     <div class="wrap">
-      <div class="section-eyebrow label">Our Team</div>
-      <h2 class="section-title">Skills & Expertise Behind Every Sprint.</h2>
-      <p class="section-lead">Our bench spans the full technology and business stack — so every sprint is staffed with the exact expertise your project needs.</p>
+      <div class="section-eyebrow label">Sprint Deliverables</div>
+      <h2 class="section-title">Specific enough to evaluate. Small enough to ship.</h2>
+      <p class="section-lead">A sprint is not an open-ended consulting engagement. It produces the evidence a founder needs to make the next product or hiring decision.</p>
 
-      <div class="skills-grid">
-        <div class="skill-tag"><span class="skill-dot"></span>Software Development</div>
-        <div class="skill-tag"><span class="skill-dot"></span>Web & Mobile Development</div>
-        <div class="skill-tag"><span class="skill-dot"></span>Databases</div>
-        <div class="skill-tag"><span class="skill-dot"></span>DevOps & Cloud Infrastructure</div>
-        <div class="skill-tag"><span class="skill-dot"></span>AI & Machine Learning</div>
-        <div class="skill-tag"><span class="skill-dot"></span>Data Science & Analytics</div>
-        <div class="skill-tag"><span class="skill-dot"></span>Networking & Systems Engineering</div>
-        <div class="skill-tag"><span class="skill-dot"></span>Wireless, Edge & Security</div>
-        <div class="skill-tag"><span class="skill-dot"></span>SAP & ERP Systems</div>
-        <div class="skill-tag"><span class="skill-dot"></span>Quality, Compliance & Regulatory</div>
-        <div class="skill-tag"><span class="skill-dot"></span>Project & Program Management</div>
-        <div class="skill-tag"><span class="skill-dot"></span>Product Management & Strategy</div>
-        <div class="skill-tag"><span class="skill-dot"></span>Leadership & Operations</div>
-        <div class="skill-tag"><span class="skill-dot"></span>Marketing & Communications</div>
-        <div class="skill-tag"><span class="skill-dot"></span>Business Coaching & Customer Success</div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-title">Problem</div>
+          <p class="why-body">A support, ops, sales, or product workflow has enough repeated manual judgment that AI could save meaningful time.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-title">Sprint</div>
+          <p class="why-body">We integrate with a narrow data set, build the workflow, test it with real users, and document what should happen next.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-title">Result</div>
+          <p class="why-body">You leave with a working prototype, a technical handoff, and a founder-level decision: ship, iterate, hire, or stop.</p>
+        </div>
+      </div>
+
+      <div class="continuation-card">
+        <a href="https://skill-forward.vercel.app/gallery/screenshots/webp/adebunmi-adeyemo.webp" target="_blank" rel="noopener">
+          <img class="proof-avatar" src="https://skill-forward.vercel.app/gallery/screenshots/webp/adebunmi-adeyemo.webp" alt="Adebunmi Adeyemo">
+        </a>
+        <div>
+          <div class="continuation-title">Recent sprint proof by <a href="https://skill-forward.vercel.app/gallery/screenshots/webp/adebunmi-adeyemo.webp" target="_blank" rel="noopener">Bunmi</a></div>
+          <div class="continuation-body">Bunmi built the media extraction, structured flow, and deployment for a companion site for a book in a 15-hour sprint using Claude Code and Codex. The authors' quick response: "Love it."</div>
+        </div>
+      </div>
+
+      <div class="continuation-card">
+        <div class="proof-media-group">
+          <a href="https://skill-forward.vercel.app/gallery/screenshots/webp/srikathyayani.webp" target="_blank" rel="noopener">
+            <img class="proof-avatar" src="https://skill-forward.vercel.app/gallery/screenshots/webp/srikathyayani.webp" alt="Srikathyayani">
+          </a>
+          <a href="https://api.microlink.io/?url=https%3A%2F%2Fkrisrodden.github.io%2FKrisRoddenPortfolio%2F&amp;screenshot=true&amp;meta=false&amp;embed=screenshot.url" target="_blank" rel="noopener">
+            <img class="proof-thumb" src="https://api.microlink.io/?url=https%3A%2F%2Fkrisrodden.github.io%2FKrisRoddenPortfolio%2F&amp;screenshot=true&amp;meta=false&amp;embed=screenshot.url" alt="Kris Rodden portfolio screenshot">
+          </a>
+        </div>
+        <div>
+          <div class="continuation-title">Recent sprint proof by <a href="https://skill-forward.vercel.app/gallery/screenshots/webp/srikathyayani.webp" target="_blank" rel="noopener">Katyayani</a> and <a href="https://api.microlink.io/?url=https%3A%2F%2Fkrisrodden.github.io%2FKrisRoddenPortfolio%2F&amp;screenshot=true&amp;meta=false&amp;embed=screenshot.url" target="_blank" rel="noopener">Kris</a></div>
+          <div class="continuation-body">The collaboration between Katyayani and Kris rebranded and updated the <a href="https://skill-forward.vercel.app/" target="_blank" rel="noopener">Skill Forward website</a> to satisfy the client contract requirements.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -673,7 +569,7 @@
 
         <div class="why-card">
           <div class="why-title">Senior Technical Expertise</div>
-          <p class="why-body">Work directly with experienced engineers and AI leaders — not junior staff or account managers. The people who scope your sprint are the people who build it.</p>
+          <p class="why-body">Work with a senior technical lead who scopes the sprint, reviews implementation, and stays accountable for the outcome.</p>
         </div>
 
         <div class="why-card">
@@ -683,14 +579,14 @@
 
         <div class="why-card">
           <div class="why-title">Flexible Engagement Model</div>
-          <p class="why-body">Ideal for organizations that:
+          <div class="why-body">Ideal for organizations that:
             <ul>
               <li>Want to explore AI capabilities</li>
               <li>Lack internal AI bandwidth</li>
               <li>Aren't ready for a full-time AI hire</li>
               <li>Need rapid implementation help</li>
             </ul>
-          </p>
+          </div>
         </div>
 
         <div class="why-card">
@@ -723,7 +619,7 @@
           <div class="step-num">2</div>
           <div>
             <div class="step-title">Sprint Definition and Pricing</div>
-            <p class="step-body">We scope a focused AI sprint with clear deliverables and timelines. You'll know exactly what we're building, when it's due, and what success looks like — before we start. 40-hour sprint starting at $800, 80-hour sprint starting at $1,500.</p>
+            <p class="step-body">We scope a focused AI sprint with clear deliverables and timelines. You'll know exactly what we're building, when it's due, and what success looks like before we start. Pricing is fixed after scoping so the sprint matches the value and complexity of the decision.</p>
           </div>
         </div>
 
@@ -747,25 +643,6 @@
     </div>
   </section>
 
-  <!-- SWEEPSTAKES -->
-  <section class="section" id="sweepstakes" style="padding-top: 32px; border-top: none;">
-    <div class="wrap">
-      <div style="background: var(--ink); border-radius: 8px; padding: 64px 56px; display: flex; gap: 56px; align-items: center; flex-wrap: wrap;">
-        <div style="flex: 1; min-width: 280px;">
-          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px;">Sweepstakes</div>
-          <h2 style="font-family: 'Newsreader', Georgia, serif; font-size: clamp(28px, 3.5vw, 48px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 16px; color: var(--paper);">Win 1 Free 40-Hour <em style="color: var(--accent); font-style: italic;">AI Sprint.</em></h2>
-          <p style="font-size: 15px; line-height: 1.7; color: var(--paper); opacity: 0.65; max-width: 460px; margin-bottom: 32px;">Enter your project details for a chance to win a free 40-hour AI Sprint — a $800 value. Tell us what you're building and we'll select the most compelling idea.</p>
-          <button id="openSweepstakesModal" class="cta-btn">Enter Sweepstakes ➺</button>
-        </div>
-        <div style="flex-shrink: 0; text-align: center; border-left: 1px solid rgba(255,255,255,0.12); padding-left: 56px;">
-          <div style="font-family: 'Newsreader', Georgia, serif; font-size: 72px; font-weight: 500; line-height: 1; color: var(--accent);">$800</div>
-          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--paper); opacity: 0.5; margin-top: 10px;">Prize Value</div>
-          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--paper); opacity: 0.5; margin-top: 4px;">40-Hour Sprint</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- CTA / BOOK -->
   <div class="cta-section" id="book">
     <div class="wrap">
@@ -782,60 +659,10 @@
       </a>
 
       <p style="margin-top: 32px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--paper); opacity: 0.7; margin-bottom: 16px;">Questions?</p>
-      <button id="openContactModal" class="cta-btn">
+      <a class="cta-btn" href="https://calendly.com/srikathyayani-srikanteswara/30min" target="_blank" rel="noopener">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12v9a1 1 0 01-1 1H3a1 1 0 01-1-1V4z"/><path d="M2 4l6 5 6-5"/></svg>
-        Contact Us ➺
-      </button>
-    </div>
-  </div>
-
-  <!-- CONTACT MODAL -->
-  <div id="contactModal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Contact us">
-    <div class="modal-box">
-      <button class="modal-close" id="closeContactModal" aria-label="Close">✕</button>
-      <div class="modal-eyebrow">Get in Touch</div>
-      <div class="modal-title">Send Us a Message</div>
-      <form id="contactForm">
-        <div class="modal-field">
-          <label class="modal-label" for="cf-email">Your Email</label>
-          <input class="modal-input" id="cf-email" type="email" name="email" required placeholder="you@example.com">
-        </div>
-        <div class="modal-field">
-          <label class="modal-label" for="cf-subject">Subject</label>
-          <input class="modal-input" id="cf-subject" type="text" name="subject" required placeholder="How can we help?">
-        </div>
-        <div class="modal-field">
-          <label class="modal-label" for="cf-message">Message</label>
-          <textarea class="modal-textarea" id="cf-message" name="message" required placeholder="Tell us about your project or question…"></textarea>
-        </div>
-        <button class="modal-submit" type="submit">Send Message ➺</button>
-        <div class="modal-status" id="formStatus"></div>
-      </form>
-    </div>
-  </div>
-
-  <!-- SWEEPSTAKES MODAL -->
-  <div id="sweepstakesModal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Sweepstakes entry">
-    <div class="modal-box">
-      <button class="modal-close" id="closeSweepstakesModal" aria-label="Close">✕</button>
-      <div class="modal-eyebrow">Win a Free Sprint</div>
-      <div class="modal-title">Sweepstakes Entry</div>
-      <form id="sweepstakesForm">
-        <div class="modal-field">
-          <label class="modal-label" for="sw-email">Your Email</label>
-          <input class="modal-input" id="sw-email" type="email" name="email" required placeholder="you@company.com">
-        </div>
-        <div class="modal-field">
-          <label class="modal-label" for="sw-company">Company Name</label>
-          <input class="modal-input" id="sw-company" type="text" name="company" required placeholder="Your company or startup name">
-        </div>
-        <div class="modal-field">
-          <label class="modal-label" for="sw-description">AI Sprint Project Description</label>
-          <textarea class="modal-textarea" id="sw-description" name="description" required placeholder="Describe the business problem you'd like to solve with an AI Sprint…"></textarea>
-        </div>
-        <button class="modal-submit" type="submit">Enter Sweepstakes ➺</button>
-        <div class="modal-status" id="sweepstakesStatus"></div>
-      </form>
+        Ask on a Scoping Call ➺
+      </a>
     </div>
   </div>
 
@@ -843,7 +670,7 @@
   <footer>
     <div class="wrap footer">
       <span>© 2025 AI Sprint Studio</span>
-      <span>Ship Practical AI Solutions in Days, Not Months.</span>
+      <span>Ship a working AI feature in two weeks.</span>
       <a class="linkchip" href="https://calendly.com/srikathyayani-srikanteswara/30min" target="_blank" rel="noopener">Book a Call ➺</a>
     </div>
   </footer>
@@ -864,112 +691,6 @@
       root.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
       btn.innerHTML = next === 'light' ? MOON : SUN;
-    });
-
-    // Contact modal
-    const modal = document.getElementById('contactModal');
-    const openBtn = document.getElementById('openContactModal');
-    const closeBtn = document.getElementById('closeContactModal');
-    const form = document.getElementById('contactForm');
-    const status = document.getElementById('formStatus');
-
-    function openModal() { modal.classList.add('open'); document.body.style.overflow = 'hidden'; }
-    function closeModal() { modal.classList.remove('open'); document.body.style.overflow = ''; }
-
-    openBtn.addEventListener('click', openModal);
-    closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeSweepstakes(); } });
-
-    form.addEventListener('submit', async e => {
-      e.preventDefault();
-      const submitBtn = form.querySelector('.modal-submit');
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending…';
-      status.className = 'modal-status';
-      status.style.display = 'none';
-
-      // Replace YOUR_FORM_ID below with the ID from your Formspree dashboard
-      const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
-
-      try {
-        const res = await fetch(FORMSPREE_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email: form.email.value,
-            subject: form.subject.value,
-            message: form.message.value
-          })
-        });
-        if (res.ok) {
-          form.reset();
-          status.textContent = 'Message sent! We\'ll be in touch soon.';
-          status.className = 'modal-status success';
-        } else {
-          throw new Error('Server error');
-        }
-      } catch {
-        status.textContent = 'Something went wrong. Please try again.';
-        status.className = 'modal-status error';
-      }
-
-      status.style.display = 'block';
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Send Message ➺';
-    });
-
-    // Sweepstakes modal
-    const swModal = document.getElementById('sweepstakesModal');
-    const swOpenBtn = document.getElementById('openSweepstakesModal');
-    const swCloseBtn = document.getElementById('closeSweepstakesModal');
-    const swForm = document.getElementById('sweepstakesForm');
-    const swStatus = document.getElementById('sweepstakesStatus');
-
-    function openSweepstakes() { swModal.classList.add('open'); document.body.style.overflow = 'hidden'; }
-    function closeSweepstakes() { swModal.classList.remove('open'); document.body.style.overflow = ''; }
-
-    swOpenBtn.addEventListener('click', openSweepstakes);
-    swCloseBtn.addEventListener('click', closeSweepstakes);
-    swModal.addEventListener('click', e => { if (e.target === swModal) closeSweepstakes(); });
-
-    swForm.addEventListener('submit', async e => {
-      e.preventDefault();
-      const submitBtn = swForm.querySelector('.modal-submit');
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Submitting…';
-      swStatus.className = 'modal-status';
-      swStatus.style.display = 'none';
-
-      // Replace YOUR_SWEEPSTAKES_FORM_ID with the ID from your Formspree dashboard
-      const SW_ENDPOINT = 'https://formspree.io/f/YOUR_SWEEPSTAKES_FORM_ID';
-
-      try {
-        const res = await fetch(SW_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email: swForm.email.value,
-            company: swForm.company.value,
-            description: swForm.description.value,
-            subject: 'Sweepstakes Entry — ' + swForm.company.value
-          })
-        });
-        if (res.ok) {
-          swForm.reset();
-          swStatus.textContent = "You're entered! We'll announce the winner by email.";
-          swStatus.className = 'modal-status success';
-        } else {
-          throw new Error('Server error');
-        }
-      } catch {
-        swStatus.textContent = 'Something went wrong. Please try again.';
-        swStatus.className = 'modal-status error';
-      }
-
-      swStatus.style.display = 'block';
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Enter Sweepstakes ➺';
     });
   </script>
 </body>
