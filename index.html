@@ -643,33 +643,72 @@
     </div>
   </section>
 
+  <!-- Interest Form Modal -->
+  <div id="interestModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:1000; align-items:center; justify-content:center;">
+    <div style="background:var(--paper); color:var(--ink); border-radius:12px; padding:40px; max-width:480px; width:90%; box-shadow:0 20px 60px rgba(0,0,0,0.3); position:relative;">
+      <button onclick="closeModal()" style="position:absolute; top:16px; right:16px; background:none; border:none; font-size:20px; cursor:pointer; color:var(--ink); line-height:1;">✕</button>
+      <h3 style="margin:0 0 8px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:18px;">Submit Interest / Questions</h3>
+      <p style="margin:0 0 24px; font-size:14px; opacity:0.7;">We'll get back to you within one business day.</p>
+      <form id="interestForm" onsubmit="submitInterest(event)">
+        <div style="margin-bottom:16px;">
+          <label style="display:block; font-size:13px; font-weight:600; margin-bottom:6px;">Name <span style="color:#c0392b;">*</span></label>
+          <input type="text" id="iName" required placeholder="Your full name" style="width:100%; padding:10px 12px; border:1.5px solid var(--border,#ddd); border-radius:6px; font-size:14px; background:var(--paper); color:var(--ink); box-sizing:border-box;">
+        </div>
+        <div style="margin-bottom:16px;">
+          <label style="display:block; font-size:13px; font-weight:600; margin-bottom:6px;">Company Name <span style="color:#c0392b;">*</span></label>
+          <input type="text" id="iCompany" required placeholder="Your company" style="width:100%; padding:10px 12px; border:1.5px solid var(--border,#ddd); border-radius:6px; font-size:14px; background:var(--paper); color:var(--ink); box-sizing:border-box;">
+        </div>
+        <div style="margin-bottom:16px;">
+          <label style="display:block; font-size:13px; font-weight:600; margin-bottom:6px;">Email Address <span style="color:#c0392b;">*</span></label>
+          <input type="email" id="iEmail" required placeholder="you@company.com" style="width:100%; padding:10px 12px; border:1.5px solid var(--border,#ddd); border-radius:6px; font-size:14px; background:var(--paper); color:var(--ink); box-sizing:border-box;">
+        </div>
+        <div style="margin-bottom:24px;">
+          <label style="display:block; font-size:13px; font-weight:600; margin-bottom:6px;">Question or Message <span style="opacity:0.5;">(optional)</span></label>
+          <textarea id="iMessage" rows="4" placeholder="Tell us about your interest or ask a question…" style="width:100%; padding:10px 12px; border:1.5px solid var(--border,#ddd); border-radius:6px; font-size:14px; background:var(--paper); color:var(--ink); box-sizing:border-box; resize:vertical;"></textarea>
+        </div>
+        <button type="submit" style="width:100%; padding:12px; background:#c0392b; color:#fff; border:none; border-radius:6px; font-size:15px; font-weight:700; cursor:pointer; letter-spacing:0.03em;">Send ➺</button>
+        <p id="formStatus" style="margin:12px 0 0; font-size:13px; text-align:center; display:none;"></p>
+      </form>
+    </div>
+  </div>
+
   <!-- CTA / BOOK -->
   <div class="cta-section" id="book">
     <div class="wrap">
       <div class="cta-label">Get Started</div>
-      <h2 class="cta-title">Book a Free<br>Discovery Call.</h2>
+      <h2 class="cta-title">Contact Us if you have<br>Interest or Questions.</h2>
       <p class="cta-body">
-        Interested in exploring an AI Sprint for your company?
-        Schedule a free 15-minute discovery call to discuss your goals, current challenges,
-        and potential AI opportunities.
+        Curious about AI Sprint Studio or ready to explore what we can build together?
+        Submit your interest or questions using the form below — or book a call directly to talk through your goals and challenges.
       </p>
+      <button class="cta-btn" onclick="openModal()" style="margin-bottom:16px;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12v9a1 1 0 01-1 1H3a1 1 0 01-1-1V4z"/><path d="M2 4l6 5 6-5"/></svg>
+        Submit Interest / Questions ➺
+      </button>
       <a class="cta-btn" href="https://calendly.com/srikathyayani-srikanteswara/30min" target="_blank" rel="noopener">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="11" rx="1.5"/><path d="M5 1v4M11 1v4M2 7h12"/></svg>
         Schedule Your Free Call ➺
       </a>
-
-      <p style="margin-top: 32px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--paper); opacity: 0.7; margin-bottom: 16px;">Questions?</p>
-      <a class="cta-btn" href="https://calendly.com/srikathyayani-srikanteswara/30min" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12v9a1 1 0 01-1 1H3a1 1 0 01-1-1V4z"/><path d="M2 4l6 5 6-5"/></svg>
-        Ask on a Scoping Call ➺
-      </a>
     </div>
   </div>
+
+  <!-- ABOUT US -->
+  <section id="about" style="padding:40px 0 32px;">
+    <div class="wrap">
+      <div class="section-eyebrow">
+        <span class="chip">About Us</span>
+      </div>
+      <h2 class="section-title">Who We Are</h2>
+      <p style="max-width:900px; font-size:17px; line-height:1.7; margin:0 auto; text-align:center;">
+        Our team is made up of seasoned engineers and product leaders who have built at scale inside some of the world's most respected technology companies, like Intel, AMD, Microsoft, and others. When you work with AI Sprint Studio, you get that same level of expertise — focused entirely on your sprint.
+      </p>
+    </div>
+  </section>
 
   <!-- FOOTER -->
   <footer>
     <div class="wrap footer">
-      <span>© 2025 AI Sprint Studio</span>
+      <span>© 2026 AI Sprint Studio</span>
       <span>Ship a working AI feature in two weeks.</span>
       <a class="linkchip" href="https://calendly.com/srikathyayani-srikanteswara/30min" target="_blank" rel="noopener">Book a Call ➺</a>
     </div>
@@ -692,6 +731,41 @@
       localStorage.setItem('theme', next);
       btn.innerHTML = next === 'light' ? MOON : SUN;
     });
+
+    function openModal() {
+      const modal = document.getElementById('interestModal');
+      modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('interestModal');
+      modal.style.display = 'none';
+      document.getElementById('interestForm').reset();
+      document.getElementById('formStatus').style.display = 'none';
+    }
+
+    document.getElementById('interestModal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    function submitInterest(e) {
+      e.preventDefault();
+      const status = document.getElementById('formStatus');
+      status.style.display = 'block';
+      status.style.color = '#555';
+      status.textContent = 'Sending…';
+
+      const name = document.getElementById('iName').value.trim();
+      const company = document.getElementById('iCompany').value.trim();
+      const email = document.getElementById('iEmail').value.trim();
+      const message = document.getElementById('iMessage').value.trim();
+
+      const body = `Name: ${name}\nCompany: ${company}\nEmail: ${email}\nMessage: ${message || '(none)'}`;
+      window.location.href = `mailto:srikathyayani.srikanteswara@gmail.com,ssuresh.srinivas@gmail.com?subject=AI Sprint Studio Interest from ${encodeURIComponent(name)}&body=${encodeURIComponent(body)}`;
+
+      status.style.color = '#27ae60';
+      status.textContent = 'Your email client should open. Thank you!';
+    }
   </script>
 </body>
 </html>
