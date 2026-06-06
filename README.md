@@ -61,4 +61,4 @@ The site deploys automatically to GitHub Pages from the `main` branch. Push to `
 
 ## Contact
 
-Interested in a sprint? [Book a free discovery call](https://calendly.com/srikathyayani-srikanteswara/30min) or email us at srikathyayani.srikanteswara@gmail.com.
+Interested in a sprint? [Book a free discovery call](https://calendly.com/srikathyayani-srikanteswara/30min).
